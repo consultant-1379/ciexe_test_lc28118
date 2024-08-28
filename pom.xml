@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+<!--Please Use the latest version of integration pom.xml or the one you want to reference to -->
+	<parent>
+		<groupId>com.ericsson.nms</groupId>
+		<artifactId>integration</artifactId>
+		<version>15.2.0.20</version>
+	</parent>
+
+	<groupId>com.ericsson.oss.ci</groupId>
+	<artifactId>ciexe_test_lc28118</artifactId>
+	<version>1.0.95-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>[${project.artifactId}] JEE6 Project</name>
+
+	<properties>
+	   <ericsson.scm.url>scm:git:[fetch=]ssh://gerritmirror-ha.lmera.ericsson.se:29418/OSS/com.ericsson.oss.ci/ciexe_test_lc28118[push=]ssh://gerrit.ericsson.se:29418/OSS/com.ericsson.oss.ci/ciexe_test_lc28118</ericsson.scm.url>
+	</properties>
+
+    <plugins>
+    <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+            <updateReleaseInfo>true</updateReleaseInfo>
+        </configuration>
+    </plugin>
+    </plugins>
+
+	 <!--Profile to deploy latest site-->
+	 <profiles>
+	  <profile>
+	     <id>site_latest</id>
+	        <distributionManagement>
+		       <site>
+		         <id>site</id>
+		         <name>Site</name>
+	                 <url>${site.url}/ciexe_test_lc28118/latest</url>
+		       </site>
+		</distributionManagement>
+	  </profile>
+	 <!--Profile to stage site for review-->
+	 
+	   <profile>
+	      <id>site_review</id>
+	         <distributionManagement>
+		        <site>
+			  <id>site</id>
+			  <name>Site</name>
+		          <url>${site.url}</url>
+			</site>	
+                 </distributionManagement>
+           </profile>
+	   </profiles>
+	   <!--Deployment of versioned documentation-->	
+		<distributionManagement>
+		   <site>		
+		     <id>site</id>
+		     <name>Site</name>								      <url>${site.url}/ciexe_test_lc28118/${project.version}</url>
+		   </site>
+		  </distributionManagement>
+
+    <modules>
+        <module>ERICtest_CXP6666666</module>
+        <module>ciexe_test_lc28118-jar</module>
+    </modules>
+
+  <scm>
+      <developerConnection>${ericsson.scm.url}</developerConnection>
+      <connection>${ericsson.scm.url}</connection>
+      <tag>ciexe_test_lc28118-1.0.76</tag>
+  </scm>
+
+</project>
